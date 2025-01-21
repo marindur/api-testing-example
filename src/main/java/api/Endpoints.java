@@ -1,14 +1,14 @@
 package api;
 
+import config.ConfigReader;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import java.io.IOException;
 
 import static io.restassured.RestAssured.*;
 
 public class Endpoints {
-
-    private static final String BEARER_TOKEN = "8d16333936e72e705980878e18c95976";
 
     // Creates the base request specification to be used by all API calls
     private static RequestSpecification baseRequestSpec() {
@@ -18,26 +18,26 @@ public class Endpoints {
     }
 
     // Sends a GET request to retrieve pages data
-    public static Response getPages() {
+    public static Response getPages() throws IOException {
         return baseRequestSpec()
-                .header("Authorization", "Bearer " + BEARER_TOKEN)
+                .header("Authorization", "Bearer " + ConfigReader.getBearerToken())
                 .when()
                 .get(Routes.getPages);
     }
 
     // Sends a GET request to retrieve components data using page ID
-    public static Response getComponents(String id) {
+    public static Response getComponents(String id) throws IOException {
         return baseRequestSpec()
-                .header("Authorization", "Bearer " + BEARER_TOKEN)
+                .header("Authorization", "Bearer " + ConfigReader.getBearerToken())
                 .pathParams("id", id)
                 .when()
                 .get(Routes.getComponents);
     }
 
     // Sends a GET request to retrieve component data of specific component using page ID and component ID
-    public static Response getComponentData(String pId, String cId) {
+    public static Response getComponentData(String pId, String cId) throws IOException {
         return baseRequestSpec()
-                .header("Authorization", "Bearer " + BEARER_TOKEN)
+                .header("Authorization", "Bearer " + ConfigReader.getBearerToken())
                 .pathParams("id", pId)
                 .pathParams("id", cId)
                 .when()
@@ -45,9 +45,9 @@ public class Endpoints {
     }
 
     // Sends a GET request to retrieve incidents data using page ID
-    public static Response getIncidents(String id) {
+    public static Response getIncidents(String id) throws IOException {
         return baseRequestSpec()
-                .header("Authorization", "Bearer " + BEARER_TOKEN)
+                .header("Authorization", "Bearer " + ConfigReader.getBearerToken())
                 .pathParams("id", id)
                 .when()
                 .get(Routes.getIncidents);

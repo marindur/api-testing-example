@@ -3,6 +3,7 @@ package api;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import java.io.IOException;
 import java.util.List;
 
 public class ValidateEndpointsTest {
@@ -14,7 +15,7 @@ public class ValidateEndpointsTest {
 
     // Test the /v1/pages endpoint
     @Test(priority = 1)
-    public void testGetPages() {
+    public void testGetPages() throws IOException {
 
         Response response = Endpoints.getPages();
         // Verify status code is 200
@@ -32,7 +33,7 @@ public class ValidateEndpointsTest {
 
     // Test the /v1/:page_id/components endpoint
     @Test(priority = 2, dependsOnMethods = {"testGetPages"})
-    public void testGetComponents() {
+    public void testGetComponents() throws IOException {
 
         Response response = Endpoints.getComponents(pageId);
         // Verify status code is 200
@@ -50,7 +51,7 @@ public class ValidateEndpointsTest {
 
     // Test the /v1/:page_id/components/:component_id endpoint
     @Test(priority = 3, dependsOnMethods = {"testGetPages", "testGetComponents"})
-    public void testGetComponentData() {
+    public void testGetComponentData() throws IOException {
 
         Response response = Endpoints.getComponentData(pageId, componentId);
         // Verify status code is 200
@@ -62,7 +63,7 @@ public class ValidateEndpointsTest {
 
     // Test the /v1/:page_id/incidents endpoint
     @Test(priority = 4, dependsOnMethods = {"testGetPages"})
-    public void testGetIncidents() {
+    public void testGetIncidents() throws IOException {
 
         Response response = Endpoints.getIncidents(pageId);
         // Verify status code is 200
@@ -80,7 +81,7 @@ public class ValidateEndpointsTest {
 
     // Test status of site for component of incident
     @Test(priority = 5, dependsOnMethods = {"testGetPages"}, dataProvider = "incidentStatus", dataProviderClass = TestData.class)
-    public void testIncidentSiteStatus(String expectedStatus) {
+    public void testIncidentSiteStatus(String expectedStatus) throws IOException {
 
         Response response = Endpoints.getIncidents(pageId);
         // Verify status code is 200
@@ -98,7 +99,7 @@ public class ValidateEndpointsTest {
 
     // Test names of all components
     @Test(priority = 6, dependsOnMethods = {"testGetPages"}, dataProvider = "componentsNamesData", dataProviderClass = TestData.class)
-    public void testComponentsNames(List<String> expectedComponentsNames) {
+    public void testComponentsNames(List<String> expectedComponentsNames) throws IOException {
 
         Response response = Endpoints.getComponents(pageId);
         // Verify status code is 200
@@ -116,7 +117,7 @@ public class ValidateEndpointsTest {
 
     // Test the /v1/:page_id/components endpoint with invalid page ID
     @Test(priority = 7, dataProvider = "invalidPageId", dataProviderClass = TestData.class)
-    public void testInvalidPageId(String invalidPageId) {
+    public void testInvalidPageId(String invalidPageId) throws IOException {
 
         Response response = Endpoints.getComponents(invalidPageId);
         // Verify status code is 404
@@ -128,7 +129,7 @@ public class ValidateEndpointsTest {
 
     // Test the /v1/:page_id/components endpoint with invalid component ID
     @Test(priority = 8, dependsOnMethods = {"testGetPages"}, dataProvider = "invalidComponentId", dataProviderClass = TestData.class)
-    public void testInvalidComponentId(String invalidComponentId) {
+    public void testInvalidComponentId(String invalidComponentId) throws IOException {
 
         Response response = Endpoints.getComponentData(pageId, invalidComponentId);
         // Verify status code is 500

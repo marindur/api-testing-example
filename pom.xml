@@ -4,15 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
-    <artifactId>ApiTesting</artifactId>
+    <groupId>org.marindur</groupId>
+    <artifactId>api-testing-example</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>Api Testing Example</name>
+    <description>Example solution for "Fortuna Entertainment Group" Interview Task</description>
 
     <dependencies>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.7.1</version>
+            <version>7.10.2</version>
         </dependency>
         <dependency>
             <groupId>io.rest-assured</groupId>
@@ -24,9 +26,15 @@
             <artifactId>commons-codec</artifactId>
             <version>1.15</version>
         </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>2.3</version>
+        </dependency>
     </dependencies>
 
     <properties>
+        <java.version>21</java.version>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
