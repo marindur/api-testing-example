@@ -9,6 +9,7 @@ This is a small project that using Java, Maven, RestAssured, TestNG and SnakeYAM
 - [Project Structure](#writing-api-tests)
 - [Adding Bearer Token](#writing-api-tests)
 - [Running Tests](#running-tests)
+- [Test Report](#running-tests)
 
 
 ## Prerequisites
@@ -47,11 +48,15 @@ In your pom.xml file, you should add the necessary dependencies for TestNG, Rest
 ├─ pom.xml
 ├─ src
 │  ├─ main
-│  │  └─ java
-│  │     └─ api
-│  │        ├─ Endpoints.java
-│  │        ├─ Routes.java
-│  │        └─ TestData.java
+│  │  ├─ java
+│  │  │  ├─ api
+│  │  │  │  ├─ Endpoints.java
+│  │  │  │  ├─ Routes.java
+│  │  │  │  └─ TestData.java
+│  │  │  └─ config
+│  │  │     └─ ConfigReader.java
+│  │  └─ resources
+│  │     └─ config.yaml
 │  └─ test
 │     └─ java
 │        └─ api
@@ -73,3 +78,12 @@ You can run your API tests using Maven:
 ```bash
 mvn clean test
 ```
+
+## Test Report
+
+You can find Test Report in this file path:
+```
+ProjectFile/target/surefire-reports/Surefire suite/Surefire test.html
+```
+
+Target package will be created after the project is set up, and test report will be created after tests are run using maven command.
