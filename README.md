@@ -6,10 +6,10 @@ This is a small project that using Java, Maven, RestAssured, TestNG and SnakeYAM
 - [Prerequisites](#prerequisites)
 - [Setting Up the Project](#setting-up-the-project)
 - [Adding Dependencies](#adding-dependencies)
-- [Project Structure](#writing-api-tests)
-- [Adding Bearer Token](#writing-api-tests)
+- [Project Structure](#project-structure)
+- [Adding Bearer Token](#adding-bearer-token)
 - [Running Tests](#running-tests)
-- [Test Report](#running-tests)
+- [Test Report](#test-report)
 
 
 ## Prerequisites
